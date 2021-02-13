@@ -141,7 +141,12 @@ export default ComposedComponent =>
           ref="trigger"
           onClick={event => {
             event.preventDefault();
-            !this.props.disabled && this.toggle();
+            if (
+              this.refs.trigger.contains(event.target) &&
+              !this.props.disabled
+            ) {
+              this.toggle();
+            }
           }}
           className={cx(
             triggerClasses,
